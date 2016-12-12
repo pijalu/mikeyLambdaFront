@@ -1,5 +1,17 @@
-<div class="row marketing">
-	<img class="newmatch" src="/images/invisible.png" ng-repeat="n in newMatchesArray()"/>
-	<img class="burnedmatch" src="/images/invisible.png" ng-repeat="n in burnedMatchesArray()"/>
-	<img class="burningmatch" src="/images/invisible.png" ng-repeat="n in burningMatchesArray()"/>
+<div class="alert alert-success" ng-show="message !== undefined">
+  {{message}}
 </div>
+
+<div class="row marketing">
+	<span ng-repeat="match in matches">
+			<img ng-class="getMatchClass(match.id)"
+					 ng-click="clickMatch(match.id)"
+					 src="/images/invisible.png"/>
+	</span>	
+</div>
+
+<div class="row marketing">
+	<button type="button" class="btn btn-primary" ng-click="submit()" ng-disabled="burning <= 0 || burning > 3" ng-show="left !== 0">Go!</button>
+	<button type="button" class="btn btn-primary" ng-click="init()" ng-show="left === 0">Reload!</button>
+</div>
+
